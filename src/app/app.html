@@ -1,0 +1,159 @@
+<div class="nubes-contenedor">
+    <img src="images/nube-1.png" alt="Nube 1" class="nube nube-1">
+    <img src="images/nube-2.png" alt="Nube 2" class="nube nube-2">
+    <img src="images/nube-3.png" alt="Nube 3" class="nube nube-3">
+    <img src="images/nube-1.png" alt="Nube 4" class="nube nube-4">
+    <img src="images/nube-2.png" alt="Nube 5" class="nube nube-5">
+    <img src="images/nube-3.png" alt="Nube 6" class="nube nube-6">
+    <img src="images/nube-1.png" alt="Nube 7" class="nube nube-7">
+    <img src="images/nube-2.png" alt="Nube 8" class="nube nube-8">
+</div>
+
+<div class="contenedor-principal">
+    <div class="text-center m-3">
+        --- 01/02/2026 ---
+    </div>
+<div class="contenedor-nombre">
+    <h1>Mi primer añito</h1>
+    <h1>Marcos</h1>
+</div>
+<app-reloj></app-reloj>
+</div>
+
+
+<div class="flex gap-2.5 flex-col justify-center items-center">
+<section class="w-2xs rounded-2xl h-24 section-content-asistira text-center">
+    <h2 class="text-center">¿Confirmas tu asistencia?</h2>
+    <section class="flex gap-4 justify-center contenedor-decision">
+
+            <button  (click)="eventoAsistir(true)"><a href="#modal1" >Si, asistiré 🥳</a> </button>
+            <button (click)="eventoAsistir(false)"><a href="#modal2">No podré 😔</a></button>
+
+    </section>
+</section>  
+
+<div id="modal1" class="modalmask">
+    <div class="modalbox">
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>¡Qué alegría! 🎉</h2>
+        <p>¿Cuántas personas asistirán?</p>
+        <form class="modal-form" (submit)="confirmarAsistencia($event, true)">
+            <input type="text" class="modal-input" placeholder="Tu nombre" required>
+            <select class="modal-select" required>
+                <option value="">Selecciona...</option>
+                <option value="1">1 persona</option>
+                <option value="2">2 personas</option>
+                <option value="3">3 personas</option>
+                <option value="4">4 personas</option>
+                <option value="5">5 personas</option>
+                <option value="6">6 personas</option>
+                <option value="7">7 personas</option>
+                <option value="8">8 personas</option>
+            </select>
+            <button type="submit" class="modal-button">Confirmar asistencia</button>
+        </form>
+    </div>
+
+    <!-- Overlay de carga -->
+    <div class="loading-overlay" [class.active]="mostrarOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Confirmando asistencia...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: No puedo asistir -->
+<div id="modal2" class="modalmask">
+    <div class="modalbox">
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>¡Qué lástima! 😔</h2>
+        <p>Confirma que no podrás asistir</p>
+        <form class="modal-form" (submit)="confirmarAsistencia($event, false)">
+            <input type="text" class="modal-input" placeholder="Tu nombre" required>
+            <button type="submit" class="modal-button">Confirmar que no asistiré</button>
+        </form>
+    </div>
+
+    <!-- Overlay de carga -->
+    <div class="loading-overlay" [class.active]="mostrarOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Confirmando...</p>
+        </div>
+    </div>
+</div>
+
+<div class="flex gap-2.5 flex-col justify-center items-center">
+<section class="w-2xs rounded-2xl section-content dia-section">
+    <h2 class="text-center">📅 Día y Horario</h2>
+    <div class="dia-info">
+        <div class="fecha-contenedor">
+            <div class="fecha-icon">🎂</div>
+            <div class="fecha-texto">
+                <span class="fecha-principal">Domingo 1 de Febrero</span>
+                <span class="fecha-año">2026</span>
+            </div>
+        </div>
+        <div class="horario-contenedor">
+            <div class="horario-icon">🕐</div>
+            <div class="horario-texto">
+                <span class="horario-label">Horario</span>
+                <span class="horario-horas">12:00 a 18:00 hs</span>
+            </div>
+        </div>
+    </div>
+</section>  
+
+<section class="w-2xs rounded-2xl section-content ubicacion-section">
+    <h2 class="text-center">Ubicación</h2>
+    <p>La Quintina Eventos</p>
+    <div class="mapa-preview">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.517448977397!2d-58.85366020000001!3d-34.4897638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9b0051d55bed%3A0x7872bde5a69327be!2sLa%20Quintina%20Eventos!5e0!3m2!1ses-419!2sar!4v1762902908993!5m2!1ses-419!2sar"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    <a href="https://www.google.com/maps/place/La+Quintina+Eventos/@-34.4897638,-58.85366020000001,17z/data=!3m1!4b1!4m6!3m5!1s0x95bc9b0051d55bed:0x7872bde5a69327be!8m2!3d-34.4897638!4d-58.85366020000001"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-ubicacion">
+        📍 Abrir en Google Maps
+    </a>
+</section>
+
+<section class="w-2xs rounded-2xl section-content marcos-foto-section">
+    <div class="marcos-foto-contenedor">
+        <img src="images/marcos.png" alt="Marcos" class="marcos-foto">
+    </div>
+</section> 
+</div>
+
+
+<!-- Modal de alerta -->
+<div class="alert-modal" id="alertModal">
+    <div class="alert-overlay"></div>
+    <div class="alert-box">
+        <div class="alert-icon" id="alertIcon"></div>
+        <h3 class="alert-title" id="alertTitle"></h3>
+        <p class="alert-message" id="alertMessage"></p>
+        <button class="alert-button" id="alertButton">Cerrar</button>
+    </div>
+</div>
+
+<!-- Indicador de scroll -->
+<button class="scroll-indicator" id="scrollIndicator" aria-label="Scroll hacia abajo">
+    <span class="scroll-arrow">↓</span>
+</button>
+
+<div class="footer-contenedor">
+    <img src="images/Fondo-footer.png" alt="Footer" class="footer-imagen">
+</div>
+
+
+

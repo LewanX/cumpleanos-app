@@ -1,0 +1,89 @@
+@import "tailwindcss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  /* Colores pastel principales */
+  --pastel-naranja: #FF9F7A;
+  --pastel-amarillo: #FFD18E;
+  --pastel-crema: #FFEFD5;
+  --pastel-verde: #C8D5A0;
+  --pastel-rosa: #FFB6C1;
+  --pastel-lila: #E6D5E8;
+
+  /* Colores base */
+  --color-fondo: #FFFFFF;
+  --color-texto: #000000;
+}
+
+
+body {
+  font-family: 'pooh';
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Fondo con imagen PNG para móviles */
+@media (max-width: 768px) {
+  body {
+    background-image: url('/images/Fondo-azul.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-image: url('/images/Fondo-azul.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    min-height: 100vh;
+  }
+}
+
+/* Fondo con gradiente CSS para desktop - estilo acuarela */
+@media (min-width: 769px) {
+  body {
+    background:
+      /* Manchas de acuarela superiores */
+      radial-gradient(ellipse 800px 400px at 20% 10%, rgba(135, 206, 250, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse 600px 350px at 80% 15%, rgba(173, 216, 230, 0.35) 0%, transparent 50%),
+      radial-gradient(ellipse 700px 300px at 50% 5%, rgba(176, 224, 230, 0.3) 0%, transparent 50%),
+
+      /* Manchas de acuarela medias */
+      radial-gradient(ellipse 900px 500px at 30% 40%, rgba(176, 217, 241, 0.25) 0%, transparent 55%),
+      radial-gradient(ellipse 750px 450px at 70% 35%, rgba(224, 242, 247, 0.3) 0%, transparent 55%),
+
+      /* Manchas de acuarela inferiores */
+      radial-gradient(ellipse 1000px 600px at 40% 80%, rgba(224, 242, 247, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 850px 550px at 75% 75%, rgba(240, 248, 255, 0.4) 0%, transparent 60%),
+
+      /* Gradiente base suave */
+      linear-gradient(to bottom,
+        #A3D5FF 0%,
+        #B8E1FF 30%,
+        #D4EDFF 60%,
+        #E8F4FF 100%
+      );
+    background-attachment: fixed;
+    background-size: 100% 100vh;
+    min-height: 100vh;
+  }
+}

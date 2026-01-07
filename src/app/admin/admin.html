@@ -1,0 +1,177 @@
+<div class="admin-container">
+  <!-- Header -->
+  <div class="admin-header">
+    <h1>Panel de Administración</h1>
+    <p>Confirmaciones del cumpleaños</p>
+    <button class="btn-cerrar-sesion" (click)="cerrarSesion()">
+      Cerrar Sesión
+    </button>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-info">
+        <span class="stat-label">Asisten</span>
+        <span class="stat-value">{{ getTotalConfirmaciones() }}</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🎉</div>
+      <div class="stat-info">
+        <span class="stat-label">Total Personas</span>
+        <span class="stat-value">{{ getTotalPersonas() }}</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">❌</div>
+      <div class="stat-info">
+        <span class="stat-label">No Asisten</span>
+        <span class="stat-value">{{ getTotalNoAsisten() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de filtro -->
+  <div class="filtro-asistencia">
+    <button
+      class="filtro-btn"
+      [class.active]="filtroAsistencia === 'asisten'"
+      (click)="cambiarFiltroAsistencia('asisten')">
+      ✅ Los que asisten
+    </button>
+    <button
+      class="filtro-btn"
+      [class.active]="filtroAsistencia === 'no_asisten'"
+      (click)="cambiarFiltroAsistencia('no_asisten')">
+      ❌ Los que no asisten
+    </button>
+    <button
+      class="filtro-btn"
+      [class.active]="filtroAsistencia === 'todos'"
+      (click)="cambiarFiltroAsistencia('todos')">
+      📋 Todos
+    </button>
+  </div>
+
+  <!-- Barra de búsqueda -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Buscar por nombre..."
+      [value]="busqueda"
+      (input)="onBusquedaChange($event)"
+      class="search-input"
+    />
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="loading">
+    <div class="spinner"></div>
+    <p>Cargando datos...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !cargando" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Grilla moderna -->
+  <div *ngIf="!cargando && !error" class="modern-table">
+    <!-- Header de la tabla -->
+    <div class="table-header">
+      <div class="header-cell nombre-cell" (click)="cambiarOrden('nombre')">
+        <span>Nombre</span>
+        <span class="sort-icon">{{ getIconoOrden('nombre') }}</span>
+      </div>
+      <div class="header-cell cantidad-cell" (click)="cambiarOrden('cantidad')">
+        <span>Cantidad</span>
+        <span class="sort-icon">{{ getIconoOrden('cantidad') }}</span>
+      </div>
+    </div>
+
+    <!-- Filas de la tabla -->
+    <div class="table-body">
+      <div
+        *ngFor="let persona of personasPaginadas; let i = index"
+        class="table-row"
+        [class.even]="i % 2 === 0"
+        [class.no-asiste]="!persona.asiste_USUA"
+      >
+        <div class="table-cell nombre-cell">
+          <div class="nombre-badge">
+            <span [class.tachado]="!persona.asiste_USUA">{{ persona.nombre_USUA }}</span>
+            <span class="asiste-badge" *ngIf="persona.asiste_USUA">✅</span>
+            <span class="no-asiste-badge" *ngIf="!persona.asiste_USUA">❌</span>
+          </div>
+        </div>
+        <div class="table-cell cantidad-cell">
+          <div class="cantidad-badge" *ngIf="persona.asiste_USUA">
+            {{ persona.cantidad_personas_USUA }}
+            <span class="persona-text">{{ persona.cantidad_personas_USUA === 1 ? 'persona' : 'personas' }}</span>
+          </div>
+          <div class="cantidad-badge no-asiste-text" *ngIf="!persona.asiste_USUA">
+            No asiste
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje si no hay resultados -->
+      <div *ngIf="personasFiltradas.length === 0" class="no-results">
+        <span class="no-results-icon">🔍</span>
+        <p>No se encontraron resultados</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de paginación -->
+  <div *ngIf="personasFiltradas.length > 0" class="pagination-container">
+    <div class="pagination-info">
+      Mostrando {{ (paginaActual - 1) * itemsPorPagina + 1 }} -
+      {{ Math.min(paginaActual * itemsPorPagina, personasFiltradas.length) }}
+      de {{ personasFiltradas.length }} registros
+    </div>
+
+    <div class="pagination-controls">
+      <button
+        class="pagination-btn"
+        (click)="paginaAnterior()"
+        [disabled]="paginaActual === 1"
+      >
+        ‹ Anterior
+      </button>
+
+      <div class="pagination-numbers">
+        <button
+          *ngFor="let pagina of getPaginasVisibles()"
+          class="pagination-number"
+          [class.active]="pagina === paginaActual"
+          (click)="irAPagina(pagina)"
+        >
+          {{ pagina }}
+        </button>
+      </div>
+
+      <button
+        class="pagination-btn"
+        (click)="paginaSiguiente()"
+        [disabled]="paginaActual === totalPaginas"
+      >
+        Siguiente ›
+      </button>
+    </div>
+
+    <div class="items-per-page">
+      <label>Mostrar:</label>
+      <select [value]="itemsPorPagina" (change)="cambiarItemsPorPagina($event)">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <span>por página</span>
+    </div>
+  </div>
+</div>
