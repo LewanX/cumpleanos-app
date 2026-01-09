@@ -1,191 +1,19 @@
 /* Configuración del reloj */
 :root {
   /* Tamaños del reloj */
-  --tamano-circulo: 500px;
-  --font-titulo: 2.2rem;
-  --font-numero: 2.8rem;
+  --font-numero: 2.5rem;
   --font-etiqueta: 0.75rem;
-  --font-separador: 2.5rem;
+  --font-separador: 2rem;
 }
 
-
-.circulo {
-  background-image: url('/images/contenedor-circulo-horario.png');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  width: var(--tamano-circulo);
-  height: var(--tamano-circulo);
-  min-width: var(--tamano-circulo);
-  max-width: var(--tamano-circulo);
+.contenedor-reloj {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px;
-  box-sizing: border-box;
-  position: relative;
-  overflow: visible;
+  margin: 20px 0;
 }
 
-.titulo {
-  font-size: var(--font-titulo);
-  color: var(--color-texto);
-  margin: 0 0 20px 0;
-  font-weight: 500;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-}
-
-.tiempo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  flex-wrap: nowrap;
-  width: 100%;
-  justify-content: center;
-}
-
-.unidad {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 1;
-  min-width: 0;
-}
-
-.numero {
-  font-size: var(--font-numero);
-  color: var(--color-texto);
-  font-weight: 300;
-  line-height: 1;
-  text-align: center;
-}
-
-.etiqueta {
-  font-size: var(--font-etiqueta);
-  color: var(--color-texto);
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.separador {
-  font-size: var(--font-separador);
-  color: var(--color-texto);
-  font-weight: 200;
-  margin: 0 2px;
-  padding-bottom: 20px;
-  flex-shrink: 0;
-}
-
-.corazon {
-  font-size: 1.8rem;
-  color: var(--color-texto);
-  opacity: 0.3;
-  position: absolute;
-  bottom: 40px;
-}
-
-#winnie-emoji {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-  opacity: 0.8;
-  margin-top: -14px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  :root {
-    --tamano-circulo: 350px;
-    --font-titulo: 1.6rem;
-    --font-numero: 2rem;
-    --font-etiqueta: 0.65rem;
-    --font-separador: 1.8rem;
-  }
-
-  .circulo {
-    padding: 30px;
-    width: 350px;
-    height: 350px;
-  }
-
-  .titulo {
-    margin-bottom: 15px;
-    letter-spacing: 4px;
-  }
-
-  .separador {
-    padding-bottom: 15px;
-  }
-
-  .corazon {
-    font-size: 1.5rem;
-    bottom: 30px;
-  }
-  #winnie-emoji {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --tamano-circulo: 280px;
-    --font-titulo: 1.2rem;
-    --font-numero: 1.5rem;
-    --font-etiqueta: 0.55rem;
-    --font-separador: 1.4rem;
-  }
-
-  .circulo {
-    padding: 25px;
-    height: 280px;
-  }
-
-  .titulo {
-    margin-bottom: 10px;
-    letter-spacing: 3px;
-  }
-
-  .tiempo {
-    gap: 5px;
-  }
-
-  .separador {
-    padding-bottom: 10px;
-    margin: 0 1px;
-  }
-
-}
-
-@media (max-width: 375px) {
-  :root {
-    --tamano-circulo: 250px;
-    --font-titulo: 1rem;
-    --font-numero: 1.3rem;
-    --font-etiqueta: 0.5rem;
-    --font-separador: 1.2rem;
-  }
-
-  .circulo {
-    padding: 20px;
-    width: 250px;
-    height: 250px;
-  }
-
-  #winnie-emoji {
-    width: 45px;
-    height: 45px;
-  }
-}
-
-.contenedor-padre{
+.contenedor-padre {
   text-align: center;
   margin-top: 0;
   display: flex;
@@ -194,8 +22,101 @@
   justify-content: center;
 }
 
-.contenedor-reloj{
+.tiempo {
   display: flex;
   align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
   justify-content: center;
+}
+
+.unidad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.numero {
+  font-size: var(--font-numero);
+  color: var(--moana-coral);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.etiqueta {
+  font-size: var(--font-etiqueta);
+  color: var(--moana-tapa);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.separador {
+  font-size: var(--font-separador);
+  color: var(--moana-tapa);
+  font-weight: 300;
+  margin: 0 4px;
+  padding-bottom: 20px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :root {
+    --font-numero: 2rem;
+    --font-etiqueta: 0.65rem;
+    --font-separador: 1.6rem;
+  }
+
+  .tiempo {
+    gap: 10px;
+  }
+
+  .separador {
+    padding-bottom: 15px;
+    margin: 0 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-numero: 1.8rem;
+    --font-etiqueta: 0.6rem;
+    --font-separador: 1.4rem;
+  }
+
+  .tiempo {
+    gap: 8px;
+  }
+
+  .separador {
+    padding-bottom: 10px;
+    margin: 0 2px;
+  }
+
+  .unidad {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --font-numero: 1.5rem;
+    --font-etiqueta: 0.55rem;
+    --font-separador: 1.2rem;
+  }
+
+  .tiempo {
+    gap: 6px;
+  }
+
+  .separador {
+    margin: 0 1px;
+  }
 }

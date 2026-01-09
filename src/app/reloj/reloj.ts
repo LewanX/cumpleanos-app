@@ -13,7 +13,7 @@ export class Reloj implements OnInit, OnDestroy {
   protected readonly segundos = signal(0);
 
   private intervalo: any;
-  private fechaObjetivo = new Date('2026-02-01T00:00:00');
+  private fechaObjetivo = new Date('2026-01-25T00:00:00');
 
   ngOnInit() {
     this.actualizarContador();

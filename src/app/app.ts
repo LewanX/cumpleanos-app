@@ -1,7 +1,6 @@
-import { Component, inject, OnInit, HostListener  } from '@angular/core';
+import { Component, inject, signal, afterNextRender, DestroyRef } from '@angular/core';
 import { Reloj } from './reloj/reloj';
-import { SupabaseService} from '../supabase'
-
+import { SupabaseService } from '../supabase';
 
 @Component({
   selector: 'app-root',
@@ -9,55 +8,29 @@ import { SupabaseService} from '../supabase'
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
-  mostrarOverlay = false;
+export class App {
   BDSupabase = inject(SupabaseService);
+  private destroyRef = inject(DestroyRef);
 
-  ngOnInit() {
-    // Inicializar el indicador de scroll
-    this.checkScrollIndicator();
+  // Signal para overlay de carga
+  mostrarOverlay = signal(false);
 
-    // Añadir evento click al indicador
-    const scrollIndicator = document.getElementById('scrollIndicator');
-    if (scrollIndicator) {
-      scrollIndicator.addEventListener('click', () => {
-        this.scrollDown();
+  constructor() {
+    afterNextRender(() => {
+      const scrollHandler = () => {
+        // Parallax del fondo
+        const scrollTop = window.scrollY;
+        document.body.style.backgroundPositionY = `${scrollTop * 0.15}px`;
+      };
+
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+
+      this.destroyRef.onDestroy(() => {
+        window.removeEventListener('scroll', scrollHandler);
       });
-    }
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.checkScrollIndicator();
-  }
-
-  checkScrollIndicator() {
-    const scrollIndicator = document.getElementById('scrollIndicator');
-    if (!scrollIndicator) return;
-
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-
-    // Mostrar el indicador si estamos en la parte superior y hay contenido debajo
-    const isAtTop = scrollTop < windowHeight / 2;
-    const hasContentBelow = documentHeight > windowHeight * 1.5;
-    const notNearBottom = scrollTop + windowHeight < documentHeight - 200;
-
-    if (isAtTop && hasContentBelow && notNearBottom) {
-      scrollIndicator.classList.add('visible');
-    } else {
-      scrollIndicator.classList.remove('visible');
-    }
-  }
-
-  scrollDown() {
-    const windowHeight = window.innerHeight;
-    window.scrollTo({
-      top: windowHeight * 0.8,
-      behavior: 'smooth'
     });
   }
+
 
   async eventoAsistir(asiste : boolean): Promise<any> {
    
@@ -73,14 +46,14 @@ export class App implements OnInit {
     }
 
     // Mostrar overlay
-    this.mostrarOverlay = true;
+    this.mostrarOverlay.set(true);
 
     try {
       // Procesar la asistencia
       const resultado = await this.procesarAsistencia(event.currentTarget, asiste);
 
       // Ocultar overlay
-      this.mostrarOverlay = false;
+      this.mostrarOverlay.set(false);
 
       if (resultado.success) {
         // Cerrar modal
@@ -101,7 +74,7 @@ export class App implements OnInit {
       }
     } catch (error) {
       // Ocultar overlay
-      this.mostrarOverlay = false;
+      this.mostrarOverlay.set(false);
 
       // Mostrar notificación de error
       this.showNotification('Error al confirmar asistencia. Intenta nuevamente.', 'error');

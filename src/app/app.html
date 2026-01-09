@@ -1,37 +1,111 @@
-<div class="nubes-contenedor">
-    <img src="images/nube-1.png" alt="Nube 1" class="nube nube-1">
-    <img src="images/nube-2.png" alt="Nube 2" class="nube nube-2">
-    <img src="images/nube-3.png" alt="Nube 3" class="nube nube-3">
-    <img src="images/nube-1.png" alt="Nube 4" class="nube nube-4">
-    <img src="images/nube-2.png" alt="Nube 5" class="nube nube-5">
-    <img src="images/nube-3.png" alt="Nube 6" class="nube nube-6">
-    <img src="images/nube-1.png" alt="Nube 7" class="nube nube-7">
-    <img src="images/nube-2.png" alt="Nube 8" class="nube nube-8">
+<!-- Fondo parallax -->
+<div class="fondo-parallax" id="fondoParallax"></div>
+
+<!-- Título principal (por encima de todo) -->
+<h1 class="hero-title">¡El Océano Nos Llama a Celebrar!</h1>
+
+<!-- Flores esquina superior izquierda -->
+<div class="flores-decoracion">
+    <img src="images/Flores.png" alt="Flores" class="flores-superior">
 </div>
 
-<div class="contenedor-principal">
-    <div class="text-center m-3">
-        --- 01/02/2026 ---
+<!-- Decoraciones tropicales laterales -->
+<div class="tropical-decorations">
+    <img src="images/plantaLateral.png" alt="Planta izquierda" class="planta-lateral planta-izquierda">
+    <img src="images/plantaLateral.png" alt="Planta derecha" class="planta-lateral planta-derecha">
+</div>
+
+<!-- Esquinales inferiores -->
+<div class="esquinales-inferiores">
+    <img src="images/esquinal.png" alt="Esquinal izquierda" class="esquinal esquinal-izquierda">
+    <img src="images/esquinal.png" alt="Esquinal derecha" class="esquinal esquinal-derecha">
+</div>
+
+<!-- Hero Section - El Océano Nos Llama -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h2 class="hero-subtitle">Cumpleaños de Kathalella</h2>
+
+        <!-- Imagen del cartel "Faltan" -->
+        <div class="cartel-container">
+            <img src="images/cartelFaltan.png" alt="Faltan" class="cartel-faltan">
+        </div>
+
+        <app-reloj></app-reloj>
     </div>
-<div class="contenedor-nombre">
-    <h1>Mi primer añito</h1>
-    <h1>Marcos</h1>
-</div>
-<app-reloj></app-reloj>
+
 </div>
 
-
-<div class="flex gap-2.5 flex-col justify-center items-center">
-<section class="w-2xs rounded-2xl h-24 section-content-asistira text-center">
-    <h2 class="text-center">¿Confirmas tu asistencia?</h2>
-    <section class="flex gap-4 justify-center contenedor-decision">
-
-            <button  (click)="eventoAsistir(true)"><a href="#modal1" >Si, asistiré 🥳</a> </button>
-            <button (click)="eventoAsistir(false)"><a href="#modal2">No podré 😔</a></button>
-
+<!-- Contenedores de información -->
+<div class="info-cards-wrapper">
+    <!-- Recordatorio traje de baño -->
+    <section class="recordatorio-section">
+        <div class="info-card-unified">
+            <h3 class="card-title">¡No Olvides!</h3>
+            <div class="card-content-single">
+                <div class="info-row">
+                    <span class="info-icon">🩱</span>
+                    <div class="info-text">
+                        <p class="info-date">Trae tu traje de baño y toalla</p>
+                        <p class="info-location">¡Habrá pileta para refrescarnos y disfrutar del agua!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-</section>  
 
+    <!-- Sección de Ubicación -->
+    <section class="ubicacion-section">
+        <div class="info-card-unified">
+            <h3 class="card-title">Cuándo y Dónde</h3>
+            <div class="card-content-single">
+                <div class="info-row">
+                    <span class="info-icon">🎂</span>
+                    <div class="info-text">
+                        <p class="info-date">25/01/2026 | 1:00 PM - 5:00 PM</p>
+                        <p class="info-location">Mendoza 2799, B1629 Pilar, Provincia de Buenos Aires</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa integrado -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!4v1767746650861!6m8!1m7!1swkuZ5fWcHz-INv53l17InQ!2m2!1d-34.4876673055503!2d-58.88835666275212!3f62.73121289243735!4f-12.68109111183189!5f0.7820865974627469"
+                    width="100%"
+                    height="300"
+                    style="border:0; border-radius: 12px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer decorativo con océano y botones flotantes -->
+<div class="footer-decorations">
+    <!-- Botones CTA - Flotando sobre el océano -->
+    <div class="cta-container">
+        <button class="cta-button-main" (click)="eventoAsistir(true)">
+            <a href="#modal1">¡Zarpa con Nosotros! 🌊</a>
+        </button>
+        <button class="cta-button-secondary" (click)="eventoAsistir(false)">
+            <a href="#modal2">No podré asistir</a>
+        </button>
+        <a href="https://maps.app.goo.gl/nanUev2zmQGfTVzk6"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="cta-button-map">
+            📍 Abrir en Google Maps
+        </a>
+    </div>
+
+    <img src="images/oceano.png" alt="Océano" class="oceano-footer">
+</div>
+
+<!-- Modal 1: Confirmar asistencia -->
 <div id="modal1" class="modalmask">
     <div class="modalbox">
         <a href="#close" title="Close" class="close">X</a>
@@ -54,8 +128,7 @@
         </form>
     </div>
 
-    <!-- Overlay de carga -->
-    <div class="loading-overlay" [class.active]="mostrarOverlay">
+    <div class="loading-overlay" [class.active]="mostrarOverlay()">
         <div class="loading-content">
             <div class="spinner"></div>
             <p>Confirmando asistencia...</p>
@@ -75,65 +148,13 @@
         </form>
     </div>
 
-    <!-- Overlay de carga -->
-    <div class="loading-overlay" [class.active]="mostrarOverlay">
+    <div class="loading-overlay" [class.active]="mostrarOverlay()">
         <div class="loading-content">
             <div class="spinner"></div>
             <p>Confirmando...</p>
         </div>
     </div>
 </div>
-
-<div class="flex gap-2.5 flex-col justify-center items-center">
-<section class="w-2xs rounded-2xl section-content dia-section">
-    <h2 class="text-center">📅 Día y Horario</h2>
-    <div class="dia-info">
-        <div class="fecha-contenedor">
-            <div class="fecha-icon">🎂</div>
-            <div class="fecha-texto">
-                <span class="fecha-principal">Domingo 1 de Febrero</span>
-                <span class="fecha-año">2026</span>
-            </div>
-        </div>
-        <div class="horario-contenedor">
-            <div class="horario-icon">🕐</div>
-            <div class="horario-texto">
-                <span class="horario-label">Horario</span>
-                <span class="horario-horas">12:00 a 18:00 hs</span>
-            </div>
-        </div>
-    </div>
-</section>  
-
-<section class="w-2xs rounded-2xl section-content ubicacion-section">
-    <h2 class="text-center">Ubicación</h2>
-    <p>La Quintina Eventos</p>
-    <div class="mapa-preview">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.517448977397!2d-58.85366020000001!3d-34.4897638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9b0051d55bed%3A0x7872bde5a69327be!2sLa%20Quintina%20Eventos!5e0!3m2!1ses-419!2sar!4v1762902908993!5m2!1ses-419!2sar"
-            width="600"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-    <a href="https://www.google.com/maps/place/La+Quintina+Eventos/@-34.4897638,-58.85366020000001,17z/data=!3m1!4b1!4m6!3m5!1s0x95bc9b0051d55bed:0x7872bde5a69327be!8m2!3d-34.4897638!4d-58.85366020000001"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn-ubicacion">
-        📍 Abrir en Google Maps
-    </a>
-</section>
-
-<section class="w-2xs rounded-2xl section-content marcos-foto-section">
-    <div class="marcos-foto-contenedor">
-        <img src="images/marcos.png" alt="Marcos" class="marcos-foto">
-    </div>
-</section> 
-</div>
-
 
 <!-- Modal de alerta -->
 <div class="alert-modal" id="alertModal">
@@ -145,15 +166,3 @@
         <button class="alert-button" id="alertButton">Cerrar</button>
     </div>
 </div>
-
-<!-- Indicador de scroll -->
-<button class="scroll-indicator" id="scrollIndicator" aria-label="Scroll hacia abajo">
-    <span class="scroll-arrow">↓</span>
-</button>
-
-<div class="footer-contenedor">
-    <img src="images/Fondo-footer.png" alt="Footer" class="footer-imagen">
-</div>
-
-
-
