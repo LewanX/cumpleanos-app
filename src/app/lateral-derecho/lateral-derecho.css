@@ -1,0 +1,36 @@
+.lateral-container {
+    position: fixed;
+    bottom: 20px;
+    right: -60px;
+    z-index: 9998;
+    pointer-events: none;
+}
+
+.lateral-container img {
+    width: 280px;
+    height: auto;
+}
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+    .lateral-container {
+        right: -50px;
+        bottom: 15px;
+    }
+
+    .lateral-container img {
+        width: 220px;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .lateral-container {
+        right: -40px;
+        bottom: 10px;
+    }
+
+    .lateral-container img {
+        width: 180px;
+    }
+}

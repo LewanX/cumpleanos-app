@@ -1,10 +1,11 @@
 import { Component, inject, signal, afterNextRender, DestroyRef } from '@angular/core';
 import { Reloj } from './reloj/reloj';
+import { LateralDerecho } from './lateral-derecho/lateral-derecho';
 import { SupabaseService } from '../supabase';
 
 @Component({
   selector: 'app-root',
-  imports: [Reloj],
+  imports: [Reloj, LateralDerecho],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
