@@ -1,36 +1,34 @@
-.lateral-container {
+:host {
     position: fixed;
-    bottom: 20px;
-    right: -60px;
-    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+    z-index: 9998;
+    overflow: hidden;
 }
 
-.lateral-container img {
-    width: 280px;
+.lateral-img {
+    position: absolute;
+    width: 200px;
     height: auto;
+    bottom: -20px;
+    right: -40px;
 }
 
 /* Responsive para tablets */
 @media (max-width: 768px) {
-    .lateral-container {
-        right: -50px;
-        bottom: 15px;
-    }
-
-    .lateral-container img {
-        width: 220px;
+    .lateral-img {
+        width: 160px;
+        right: -30px;
     }
 }
 
 /* Responsive para móviles */
 @media (max-width: 480px) {
-    .lateral-container {
-        right: -40px;
-        bottom: 10px;
-    }
-
-    .lateral-container img {
-        width: 180px;
+    .lateral-img {
+        width: 130px;
+        right: -25px;
     }
 }
