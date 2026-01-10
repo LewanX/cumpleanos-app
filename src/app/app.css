@@ -132,6 +132,16 @@
     transform: scaleX(-1);
 }
 
+.planta-inferior-derecha {
+    position: absolute;
+    width: 280px;
+    height: auto;
+    bottom: 60px;
+    right: -80px;
+    transform: rotate(-15deg);
+    opacity: 0.95;
+}
+
 /* Responsive para tablets */
 @media (max-width: 768px) {
     .esquinal {
@@ -144,6 +154,12 @@
 
     .esquinal-derecha {
         right: -30px;
+    }
+
+    .planta-inferior-derecha {
+        width: 220px;
+        bottom: 50px;
+        right: -60px;
     }
 }
 
@@ -159,6 +175,12 @@
 
     .esquinal-derecha {
         right: -25px;
+    }
+
+    .planta-inferior-derecha {
+        width: 180px;
+        bottom: 40px;
+        right: -50px;
     }
 }
 
