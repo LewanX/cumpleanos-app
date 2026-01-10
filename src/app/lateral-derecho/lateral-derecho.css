@@ -14,14 +14,14 @@
     width: 200px;
     height: auto;
     bottom: -20px;
-    right: -40px;
+    left: -40px;
 }
 
 /* Responsive para tablets */
 @media (max-width: 768px) {
     .lateral-img {
         width: 160px;
-        right: -30px;
+        left: -30px;
     }
 }
 
@@ -29,6 +29,6 @@
 @media (max-width: 480px) {
     .lateral-img {
         width: 130px;
-        right: -25px;
+        left: -25px;
     }
 }
